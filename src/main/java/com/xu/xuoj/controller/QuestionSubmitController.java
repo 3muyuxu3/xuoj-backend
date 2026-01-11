@@ -77,4 +77,3 @@ public class QuestionSubmitController {
         return ResultUtils.success(questionSubmitService.getQuestionSubmitVOPage(questionSubmitPage, loginUser));
     }
 }
-
