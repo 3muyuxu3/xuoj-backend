@@ -53,7 +53,13 @@ class CodeSandboxTest {
     void executeCodeByProxy() {
         CodeSandbox codeSandbox = CodeSandboxFactory.newInstance(type);
         codeSandbox = new CodeSandboxProxy(codeSandbox);
-        String code = "int main() { }";
+        String code = "public class Main {\n" +
+                "    public static void main(String[] args) {\n" +
+                "        int a = Integer.parseInt(args[0]);\n" +
+                "        int b = Integer.parseInt(args[1]);\n" +
+                "        System.out.println(\"结果:\" + (a + b));\n" +
+                "    }\n" +
+                "}";
         String language = QuestionSubmitLanguageEnum.JAVA.getValue();
         List<String> inputList = Arrays.asList("1 2", "3 4");
         ExecuteCodeRequest executeCodeRequest = ExecuteCodeRequest.builder()
@@ -64,7 +70,6 @@ class CodeSandboxTest {
         ExecuteCodeResponse executeCodeResponse = codeSandbox.executeCode(executeCodeRequest);
         Assertions.assertNotNull(executeCodeResponse);
     }
-
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
